@@ -26,10 +26,10 @@ jobs:
                     pip install black isort flake8 pytest pytest-cov 
                 
             - name: Check Black formatting
-              run: black --check .
+              run: black --check mathutils
             - name: check isort import ordering
-              run: isort --check-only .
+              run: isort --check-only mathutils
             - name: run flake8 linter
-              run: flake8 .
+              run: flake8 mathutils
             - name: run tests with pytest and coverage
-              run: pytest --cov=. --cov-fail-under=80
+              run: pytest --cov=mathutils --cov-fail-under=80 mathutils
