@@ -4,7 +4,6 @@ import pytest
 from mathutils import calculator
 import sys
 
-
 def test_add():
     assert calculator.add(2, 3) == 5
     assert calculator.add(-1, 1) == 0
