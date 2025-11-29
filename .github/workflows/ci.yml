@@ -32,4 +32,4 @@ jobs:
             - name: run flake8 linter
               run: flake8 mathutils
             - name: run tests with pytest and coverage
-              run: pytest --cov=mathutils --cov-fail-under=80 mathutils
+              run: pytest --cov=mathutils --cov-fail-under=80 
