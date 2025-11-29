@@ -1,0 +1,35 @@
+name: CD
+
+on:
+    push:
+        tags:
+            - 'v*.*.*'
+
+
+permissions:
+    packages: write
+
+env:
+    TWINE_USERNAME: __token__
+    TWINE_PASSWORD: ${{secrets.SECRETKEY}}
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4
+
+        - uses: actions/setup-python@v5
+          with:
+            python-versoon: '3.11'
+        - name: Install build tools
+          run: |
+            pip install --upgrade pip
+            pip install build twine
+
+        - name: build package
+          run: python -m build
+        - name: check distribution
+          run: twine check dist/*
+        - name: publish to github package
+          run: twine upload --verbose --repository-url https://test.pypi.org/legacy/ dist/*
